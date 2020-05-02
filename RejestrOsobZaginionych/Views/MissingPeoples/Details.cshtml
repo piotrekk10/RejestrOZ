@@ -1,0 +1,108 @@
+﻿@model RejestrOsobZaginionych.Models.MissingPeople
+
+@{
+    ViewBag.Title = "Szczegóły";
+}
+
+<h2>Szczegóły</h2>
+<style>
+    img {
+        max-width: 480px;
+        max-height: 480px;
+    }
+</style>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Imię:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            Nazwisko:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            Miejsce zamieszkania:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiejsceZamieszkania)
+        </dd>
+
+        <dt>
+            Miejsce zaginięcia:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiejsceZaginiecia)
+        </dd>
+
+        <dt>
+            Wiek:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wiek)
+        </dd>
+
+        <dt>
+            Płeć:
+        </dt>
+            @{
+                if (Model.Plec == "K")
+                {
+                    <dd>Kobieta</dd>
+                }
+                else
+                {
+                    <dd>Mężczyzna</dd>
+                }
+             }
+            <dt>
+                Opis:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Opis)
+            </dd>
+
+            <dt>
+                Zdjęcie:
+            </dt>
+
+            <dd>
+                @{
+                    var PobierzFote = Convert.ToBase64String(Model.Zdjecie);
+                    var Fota = string.Format("data:image/jpeg;base64,{0}", PobierzFote);
+                }
+                <img src="@Url.Content(Fota)" />
+            </dd>
+
+        </dl>
+</div>
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>
+}
+else
+{
+<p>
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>
+}
+
+

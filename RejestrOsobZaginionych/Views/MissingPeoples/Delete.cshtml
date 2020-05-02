@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    @model RejestrOsobZaginionych.Models.MissingPeople
+
+    {
+        ViewBag.Title = "Usuń osobę z rejestru";
+    }
+
+    <h2>Usuń osobę z rejestru</h2>
+
+    <h3>Na pewno chcez usunąć ten wpis?</h3>
+    <style>
+        img {
+            max-width: 480px;
+            max-height: 480px;
+        }
+    </style>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Imię:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Imie)
+            </dd>
+
+            <dt>
+                Nazwisko:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+
+            <dt>
+                Miejsce zamieszkania:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MiejsceZamieszkania)
+            </dd>
+
+            <dt>
+                Miejsce zaginięcia:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MiejsceZaginiecia)
+            </dd>
+
+            <dt>
+                Wiek:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wiek)
+            </dd>
+
+            <dt>
+                Płeć:
+            </dt>
+
+            @{
+                if (Model.Plec == "K")
+                {
+                    <dd>Kobieta</dd>
+                }
+                else
+                {
+                    <dd>Mężczyzna</dd>
+                }
+            }
+
+            <dt>
+                Opis:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Opis)
+            </dd>
+
+            <dt>
+                Zdjęcie:
+            </dt>
+
+            <dd>
+                @{
+                    var PobierzFote = Convert.ToBase64String(Model.Zdjecie);
+                    var Fota = string.Format("data:image/jpeg;base64,{0}", PobierzFote);
+                }
+                <img src="@Url.Content(Fota)" />
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Usuń" class="btn btn-default" /> |
+                @Html.ActionLink("Powróć do listy", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+<p>Nie masz dostępu do tej strony</p>
+}
+
