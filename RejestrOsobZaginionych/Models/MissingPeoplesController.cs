@@ -55,9 +55,19 @@ namespace RejestrOsobZaginionych.Models
                     osoby = osoby.OrderBy(s => s.Nazwisko);
                     break;
             }
+            ViewBag.type = 0;
             return View(osoby.ToList());
         }
-
+        public ActionResult Details2(int id)
+        {
+            ViewBag.type = 1;
+            MissingPeople missingpeople = db.MissingPeople.Find(id);
+            if (missingpeople == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_Details2", missingpeople);
+        }
         // GET: MissingPeoples/Details/5
         public ActionResult Details(int? id)
         {

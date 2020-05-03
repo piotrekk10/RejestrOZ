@@ -1,0 +1,88 @@
+﻿@model RejestrOsobZaginionych.Models.MissingPeople
+
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Szczegóły</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                Imię:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Imie)
+            </dd>
+
+            <dt>
+                Nazwisko:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+
+            <dt>
+                Miejsce zamieszkania:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MiejsceZamieszkania)
+            </dd>
+
+            <dt>
+                Miejsce zaginięcia:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MiejsceZaginiecia)
+            </dd>
+
+            <dt>
+                Wiek:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wiek)
+            </dd>
+
+            <dt>
+                Płeć:
+            </dt>
+            @{
+                if (Model.Plec == "K")
+                {
+                    <dd>Kobieta</dd>
+                }
+                else
+                {
+                    <dd>Mężczyzna</dd>
+                }
+            }
+            <dt>
+                Opis:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Opis)
+            </dd>
+
+            <dt>
+                Zdjęcie:
+            </dt>
+
+            <dd>
+                @{
+                    var PobierzFote = Convert.ToBase64String(Model.Zdjecie);
+                    var Fota = string.Format("data:image/jpeg;base64,{0}", PobierzFote);
+                }
+                <img src="@Url.Content(Fota)" />
+            </dd>
+
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+    </div>
+</div>
