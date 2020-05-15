@@ -84,16 +84,17 @@ namespace RejestrOsobZaginionych.Models
         }
 
         // GET: MissingPeoples/Create
+        [Authorize(Roles ="ADMIN")]
         public ActionResult Create()
         {
             return View();
         }
-
         // POST: MissingPeoples/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Create([Bind(Include = "Id,Imie,Nazwisko,MiejsceZamieszkania,MiejsceZaginiecia,Wiek,Plec,Opis")] MissingPeople missingPeople,HttpPostedFileBase Zdjecie)
         {
             if (ModelState.IsValid)
@@ -117,7 +118,7 @@ namespace RejestrOsobZaginionych.Models
 
             return View(missingPeople);
         }
-
+        [Authorize(Roles = "ADMIN")]
         // GET: MissingPeoples/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -138,6 +139,7 @@ namespace RejestrOsobZaginionych.Models
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Edit([Bind(Include = "Id,Imie,Nazwisko,MiejsceZamieszkania,MiejsceZaginiecia,Wiek,Plec,Opis")] MissingPeople missingPeople, HttpPostedFileBase Zdjecie)
         {
             if (ModelState.IsValid)
@@ -162,6 +164,7 @@ namespace RejestrOsobZaginionych.Models
         }
 
         // GET: MissingPeoples/Delete/5
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -179,6 +182,7 @@ namespace RejestrOsobZaginionych.Models
         // POST: MissingPeoples/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ADMIN")]
         public ActionResult DeleteConfirmed(int id)
         {
             MissingPeople missingPeople = db.MissingPeople.Find(id);
