@@ -140,6 +140,8 @@
     <Content Include="App_Data\BazaOsob_log.ldf">
       <DependentUpon>BazaOsob.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-lux.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -246,6 +248,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\MissingPeoples\_Details2.cshtml" />
+    <Content Include="Views\Manage\UsersManagement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

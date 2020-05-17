@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "Lista osób zaginionych";
 }
+<style>
+    img {
+        max-width: 480px;
+        max-height: 480px;
+    }
+</style>
 <div id='Details2' class='modal'>
     <div class="modal-dialog">
         <div class="modal-content">
@@ -76,7 +82,7 @@
     else
     {
         <td>
-            <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Szczegóły</a> |
+            <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Szczegóły</a>
         </td>
     }
 

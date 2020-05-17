@@ -84,7 +84,7 @@ namespace RejestrOsobZaginionych.Models
         }
 
         // GET: MissingPeoples/Create
-        [Authorize(Roles ="ADMIN")]
+        [Authorize(Roles ="ADMIN, USER")]
         public ActionResult Create()
         {
             return View();
@@ -188,6 +188,11 @@ namespace RejestrOsobZaginionych.Models
             MissingPeople missingPeople = db.MissingPeople.Find(id);
             db.MissingPeople.Remove(missingPeople);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "ADMIN")]
+        public ActionResult UsersManagement()
+        {
             return RedirectToAction("Index");
         }
 

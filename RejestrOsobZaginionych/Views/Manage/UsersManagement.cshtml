@@ -1,0 +1,72 @@
+﻿@model IEnumerable<RejestrOsobZaginionych.Models.MissingPeople>
+
+@{
+    ViewBag.Title = "Zarządzaj swoim kontem";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Lista użytkowników</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Imie
+            </th>
+            <th>
+                @Html.ActionLink("Nazwisko", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                Miejsce zamieszkania
+            </th>
+            <th>
+                Miejsce zaginiecia
+            </th>
+            <th>
+                @Html.ActionLink("Wiek", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nazwisko)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiejsceZamieszkania)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiejsceZaginiecia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wiek)
+                </td>
+                @if (User.IsInRole("ADMIN"))
+                {
+                    <td>
+                        @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
+                        <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Szczegóły</a> |
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                    </td>
+                    <td>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Szczegóły</a>
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>

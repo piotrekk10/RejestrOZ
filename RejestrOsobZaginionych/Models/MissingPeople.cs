@@ -40,5 +40,12 @@ namespace RejestrOsobZaginionych.Models
         //[Required(ErrorMessage ="Za³¹cz zdjêcie (w formacie JPG)")]
         [Display(Name = "Zdjêcie")]
         public byte[] Zdjecie { get; set; }
+
+        [Display(Name = "Login")]
+        public string UserName { get; set; }
+        [Display(Name = "Rola")]
+        public string Role { get; set; }
+        [Display(Name = "Aktywny")]
+        public string Active { get; set; }
     }
 }
